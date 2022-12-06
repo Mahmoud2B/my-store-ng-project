@@ -1,13 +1,16 @@
 <mat-toolbar color="primary">
-  <span>My Store</span>
+  <a style="color: #fff; text-decoration: none" [routerLink]="'/'">My Store</a>
   <span class="example-spacer"></span>
   <button
     mat-icon-button
+    routerLink="cart"
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
   >
-    <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+    <mat-icon [matBadge]="cartCounter" matBadgeColor="warn"
+      >shopping_cart</mat-icon
+    >
   </button>
 </mat-toolbar>
 
-<mat-slide-toggle>Slide me!</mat-slide-toggle>
+<router-outlet></router-outlet>

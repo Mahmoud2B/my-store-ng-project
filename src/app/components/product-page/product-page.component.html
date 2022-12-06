@@ -1,0 +1,22 @@
+<div class="product-page">
+  <div class="left-side">
+    <img [src]="product.url" />
+  </div>
+  <div class="right-side">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <h3>Price:</h3>
+    <div class="price">{{ product.price }}</div>
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selectedNumber">
+        <mat-option *ngFor="let item of numberOfItems" [value]="item">{{
+          item
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="addToCart()" color="primary" mat-raised-button>
+      Add to Cart
+    </button>
+  </div>
+</div>

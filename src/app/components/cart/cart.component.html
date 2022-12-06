@@ -1,0 +1,4 @@
+<div *ngIf="cartItems.length > 0" class="cart-container">
+  <div *ngFor="let item of cartItems">{{ item.product.name }}</div>
+</div>
+<div *ngElse class="empty-cart">Cart is Empty</div>

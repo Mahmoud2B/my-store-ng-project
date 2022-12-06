@@ -1,0 +1,30 @@
+<mat-card class="product-card-inner">
+  <img mat-card-image [src]="product.url" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <h3>{{ product.name }}</h3>
+    <p>
+      {{ product.description }}
+    </p>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selectedNumber">
+        <mat-option *ngFor="let item of numberOfItems" [value]="item">{{
+          item
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <a
+      [routerLink]="'/product/' + product.id"
+      class="view-btn"
+      color="primary"
+      mat-raised-button
+      >View</a
+    >
+    <button (click)="addToCart()" color="primary" mat-raised-button>
+      Add to Cart
+    </button>
+  </mat-card-actions>
+</mat-card>
