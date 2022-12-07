@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
@@ -14,6 +14,7 @@ import { CartService } from "src/app/services/cart.service";
 export class CartComponent {
   cartItems: CartItem[] = [];
   total: number = 0;
+  name: string = "";
 
   constructor(private cartService: CartService, private router: Router) {}
 
@@ -28,13 +29,16 @@ export class CartComponent {
       this.cartService.clearCart();
       this.router.navigate(["checkout"], {
         queryParams: {
-          name: f.value["fullName"],
+          name: this.name,
           email: f.value["email"],
           address: f.value["address"],
           cardNumber: f.value["cardNumber"]
         }
       });
     }
+  }
+  practiceNgModelChange($event: string) {
+    this.name = $event;
   }
   removeFromCart(id: number) {
     this.cartItems = this.cartService.removeFromCart(id);

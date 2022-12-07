@@ -38,11 +38,22 @@ export class CartService {
   }
 
   addToCart(product: Product, numberOfItems: number): void {
-    this.cartItems.push({
-      id: this.cartItems.length + 1,
-      product,
-      numberOfItems
+    let exists = false;
+    let existingItem: CartItem;
+    this.cartItems = this.cartItems.map((item) => {
+      if (item.product.id == product.id) {
+        exists = true;
+        item.numberOfItems += numberOfItems;
+      }
+      return item;
     });
+    if (!exists) {
+      this.cartItems.push({
+        id: this.cartItems.length + 1,
+        product,
+        numberOfItems
+      });
+    }
     this.saveCartToLocalStorage();
     this.totalCountChange.next(this.getCartCounter());
     this.snackBar.open(`Added ${numberOfItems} item(s) to cart!`, "Great!");
@@ -59,6 +70,7 @@ export class CartService {
     this.cartItems = this.cartItems.filter((item) => item.id != id);
     this.totalCountChange.next(this.getCartCounter());
     this.saveCartToLocalStorage();
+    this.snackBar.open("Successfully removed from Cart");
     return this.cartItems;
   }
   clearCart() {

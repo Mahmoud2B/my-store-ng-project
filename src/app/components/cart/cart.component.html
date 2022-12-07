@@ -26,27 +26,28 @@
     <hr />
     <br />
     <h2>Enter your details</h2>
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>Full Name</mat-label>
+      <input
+        (ngModelChange)="practiceNgModelChange($event)"
+        matInput
+        minlength="2"
+        maxlength="40"
+        #fullName="ngModel"
+        required
+        [(ngModel)]="name"
+        name="fullName"
+      />
+      <mat-error
+        *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+      >
+        <span *ngIf="fullName.errors?.['required']"> Name is required </span>
+        <span *ngIf="fullName.errors?.['minlength']">
+          Name must be at least 3 letters
+        </span>
+      </mat-error>
+    </mat-form-field>
     <form #form="ngForm" (ngSubmit)="submitForm(form)" class="details-form">
-      <mat-form-field appearance="outline" class="example-full-width">
-        <mat-label>Full Name</mat-label>
-        <input
-          matInput
-          minlength="2"
-          maxlength="40"
-          #fullName="ngModel"
-          required
-          ngModel
-          name="fullName"
-        />
-        <mat-error
-          *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
-        >
-          <span *ngIf="fullName.errors?.['required']"> Name is required </span>
-          <span *ngIf="fullName.errors?.['minlength']">
-            Name must be at least 3 letters
-          </span>
-        </mat-error>
-      </mat-form-field>
       <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>Address</mat-label>
         <input
@@ -101,8 +102,8 @@
 <ng-template #empty>
   <div class="empty-cart">
     Cart is Empty
-    <br/>
-    <br/>
+    <br />
+    <br />
     <div>
       <a routerLink="/" mat-raised-button color="primary">Back to Shopping</a>
     </div>

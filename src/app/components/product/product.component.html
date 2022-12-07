@@ -17,13 +17,14 @@
     </mat-form-field>
   </mat-card-content>
   <mat-card-actions>
-    <a
-      [routerLink]="'/product/' + product.id"
+    <button
+      (click)="viewProduct(product.id)"
       class="view-btn"
       color="primary"
       mat-raised-button
-      >View</a
     >
+      View
+    </button>
     <button (click)="addToCart()" color="primary" mat-raised-button>
       Add to Cart
     </button>

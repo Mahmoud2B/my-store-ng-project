@@ -1,5 +1,4 @@
-import { Component, Input } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import Product from "src/app/models/product";
 import { CartService } from "src/app/services/cart.service";
 
@@ -20,7 +19,12 @@ export class ProductComponent {
     price: 12,
     url: ""
   };
+  @Output() vieProductEvent = new EventEmitter<number>();
+
   addToCart(): void {
     this.cartService.addToCart(this.product, this.selectedNumber);
+  }
+  viewProduct(id: number) {
+    this.vieProductEvent.emit(id);
   }
 }

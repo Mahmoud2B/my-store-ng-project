@@ -1,6 +1,6 @@
 # MyStore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+This project is a demo store project where you can view items or add them to cart, just to demonstrate basic angular skills
 
 ## Development server
 
