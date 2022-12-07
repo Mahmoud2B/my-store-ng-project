@@ -1,5 +1,9 @@
 import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
+
 import CartItem from "src/app/models/cart-item";
+import Checkout from "src/app/models/checkout";
 import { CartService } from "src/app/services/cart.service";
 
 @Component({
@@ -8,33 +12,41 @@ import { CartService } from "src/app/services/cart.service";
   styleUrls: ["./cart.component.sass"]
 })
 export class CartComponent {
-  cartItems: CartItem[] = [
-    {
-      numberOfItems: 1,
-      product: {
-        id: 1,
-        name: "Book",
-        price: 9.99,
-        url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        description: "You can read it!"
-      }
-    },
-    {
-      numberOfItems: 1,
-      product: {
-        id: 1,
-        name: "Book",
-        price: 9.99,
-        url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        description: "You can read it!"
-      }
-    }
-  ];
-  constructor(private cartService: CartService) {}
+  cartItems: CartItem[] = [];
+  total: number = 0;
+
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {
     if (this.cartService.cartItems.length > 0) {
       this.cartItems = this.cartService.cartItems;
+      this.calculateTotal();
     }
+  }
+  submitForm(f: NgForm) {
+    if (f.valid) {
+      this.cartService.clearCart();
+      this.router.navigate(["checkout"], {
+        queryParams: {
+          name: f.value["fullName"],
+          email: f.value["email"],
+          address: f.value["address"],
+          cardNumber: f.value["cardNumber"]
+        }
+      });
+    }
+  }
+  removeFromCart(id: number) {
+    this.cartItems = this.cartService.removeFromCart(id);
+    this.calculateTotal();
+  }
+  calculateTotal() {
+    this.total = 0;
+    this.cartItems.forEach((item) => {
+      this.total += item.numberOfItems * item.product.price;
+    });
+  }
+  calculateItemPrice(item: CartItem): number {
+    return item.numberOfItems * item.product.price;
   }
 }

@@ -11,4 +11,8 @@ export class AppComponent {
     return this.cartService.totalCount;
   }
   constructor(private cartService: CartService) {}
+
+  ngOnInit(){
+    this.cartService.getCartFromLocalStorage();
+  }
 }
