@@ -2,6 +2,20 @@
 
 This project is a demo store project where you can view items or add them to cart, just to demonstrate basic angular skills
 
+This Application consist of:
+- Home page -> Where you can see all products
+- Product page
+- Cart page -> where you can edit your cart and submit your order
+- Order summary page
+
+Application structure:
+
+--/src
+ |--/app
+   |--/components (all pages/components templates and modules)
+   |--/models (data types)
+   |--/services (all of the services)
+ |--/assets (static data/assets)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
