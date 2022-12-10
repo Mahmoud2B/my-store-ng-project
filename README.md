@@ -8,19 +8,17 @@ This Application consist of:
 - Cart page -> where you can edit your cart and submit your order
 - Order summary page
 
-Application structure:
+## Application structure:
 
---/src
-
- |--/app
  
-   |--/components (all pages/components templates and modules)
-   
-   |--/models (data types)
-   
-   |--/services (all of the services)
-   
- |--/assets (static data/assets)
+     .
+    ├── src
+    ├── app
+       ├── components                # all pages/components templates and modules
+       ├── models                    # data types
+       ├── services                  # static data/assets
+       ├── LICENSE
+    └── assts
  
 ## Development server
 
