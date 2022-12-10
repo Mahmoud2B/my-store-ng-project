@@ -11,14 +11,14 @@ This Application consist of:
 ## Application structure:
 
  
-     .
+    .
     ├── src
-    ├── app
+    ├── assts                        # static data/assets
+    └── app
        ├── components                # all pages/components templates and modules
        ├── models                    # data types
-       ├── services                  # static data/assets
-       ├── LICENSE
-    └── assts
+       ├── services                  
+    
  
 ## Development server
 
